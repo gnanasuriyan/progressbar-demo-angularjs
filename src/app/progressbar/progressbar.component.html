@@ -1,3 +1,13 @@
-<p>
-  progressbar works!
-</p>
+<div>
+  <p *ngFor="let bar of progressbarService.config.bars">
+    <ngb-progressbar value="{{bar}}" max="{{progressbarService.config.limit}}">{{progressbarService.getPercentage(bar)}}%</ngb-progressbar>
+  </p>
+</div>
+<div class="flex-container">
+  <div class="flex-row">
+    <select [(ngModel)]="progressbarService.selectedIndex">
+      <option *ngFor="let bar of progressbarService.config.bars;let i=index" value="{{i}}">select bar {{i+1}}</option>
+    </select>
+    <button *ngFor="let button of progressbarService.config.buttons" class="btn btn-primary flex-item" (click)="progressbarService.adjustValue(button)">{{button}}</button>
+  </div>
+</div>
